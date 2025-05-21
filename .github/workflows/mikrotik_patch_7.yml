@@ -63,7 +63,7 @@ env:
 
 jobs:
   Set_Runner:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     outputs:
       BUILD_TIME: ${{ steps.set_buildtime.outputs.BUILD_TIME }}
       CHANNEL_MATRIX: ${{ steps.set_matrix.outputs.CHANNEL_MATRIX }}
@@ -87,7 +87,7 @@ jobs:
           fi
 
   PreparePatch:
-    runs-on: ubuntu-22.04
+    runs-on: ubuntu-latest
     needs: Set_Runner
 
     strategy:
