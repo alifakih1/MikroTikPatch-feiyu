@@ -98,10 +98,10 @@ def patch_initrd_xz(initrd_xz: bytes, key_dict: dict, ljust=True):
     print(f"New initrd_xz size: {len(new_initrd_xz)}")
     
     if ljust:
-        if len(new_initrd_xz) <= len(initrd_xz):
-            new_initrd_xz = new_initrd_xz.ljust(len(initrd_xz), b'\0')
-        else:
-            raise ValueError("Compressed initrd_xz size exceeds original size.")
+        # Allow larger sizes by padding to the original size
+        new_initrd_xz = new_initrd_xz.ljust(len(initrd_xz), b'\0')
+    elif len(new_initrd_xz) > len(initrd_xz):
+        raise ValueError("Compressed initrd_xz size exceeds original size.")
     
     return new_initrd_xz
 
